@@ -22,7 +22,7 @@
         const url = `https://u.blahba.com/api/websites/${sId}/stats?startAt=${st}&endAt=${now}&url=${encodeURIComponent(postPath)}`;
         fetch(url, { headers: { "Authorization": `Bearer ${t}` } }).then(r => r.json()).then(data => {
             const element = document.getElementById("article-time--count");
-            element.textContent = String(data.uniques.value);
+            element.textContent = String(data.uniques ? data.uniques.value : 0);
         });
     }());
 </script>
