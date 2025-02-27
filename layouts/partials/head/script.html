@@ -16,7 +16,7 @@
             const host = {{ $umami.Host }};
             const st = {{ $umami.StartAt }};
             const now = new Date().getTime();
-            const url = `${host}/api/websites/${siteId}/stats?startAt=${st}&endAt=${now}&url=${encodeURIComponent(pathname)}`;
+            const url = `${host}/api/websites/${siteId}/stats?startAt=${st}&endAt=${now}&url=${encodeURIComponent(path)}`;
             fetch(url).then(r => r.json()).then(data => {
                 wrapper.style.display = '';
                 e.textContent = String(data.visits ? data.visits.value : 0);
