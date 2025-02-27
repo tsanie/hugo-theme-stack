@@ -19,7 +19,8 @@
         const t = {{ $umami.ApiKey }};
         const st = {{ $umami.StartAt }};
         const now = Date.now();
-        fetch(`https://u.blahba.com/api/websites/${sId}/stats?startAt=${st}&endAt=${now}&url=${encodeURIComponent(postPath)}`).then(r => r.json()).then(data => {
+        const url = `https://u.blahba.com/api/websites/${sId}/stats?startAt=${st}&endAt=${now}&url=${encodeURIComponent(postPath)}`;
+        fetch(url, { headers: { "Authorization": `Bearer ${t}` } }).then(r => r.json()).then(data => {
             const element = document.getElementById("article-time--count");
             element.textContent = String(data.uniques.value);
         });
