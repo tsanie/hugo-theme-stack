@@ -45,12 +45,10 @@
                 </time>
             </div>
         {{ end }}
-        {{ if in .Site.Params.mainSections .Section }}
-            <div>
+            <div class="article-time--count-wrapper" style="display: none">
                 {{ partial "helper/icon" "eye" }}
-                <time class="article-time--count" data-permalink="{{ .RelPermalink }}"></time>
+                <time class="article-time--count"></time>
             </div>
-        {{ end }}
     </footer>
     {{ end }}
 
