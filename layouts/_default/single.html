@@ -39,27 +39,6 @@
     {{ partialCached "footer/footer" . }}
 
     {{ partialCached "article/components/photoswipe" . }}
-
-    {{- $umami := .Site.Params.Umami -}}
-    <script>
-        window.addEventListener("DOMContentLoaded", () => {
-            const wrapper = document.getElementsByClassName("article-time--count-wrapper")[0];
-            if (wrapper == null) {
-                return;
-            }
-            const e = document.getElementsByClassName("article-time--count")[0];
-            if (e == null) {
-                return;
-            }
-            const path = window.location.pathname;
-            const cUrl = {{ $umami.WorkerUrl }};
-            const url = `${cUrl}${path}`;
-            fetch(url).then(r => r.json()).then(data => {
-                wrapper.style.display = '';
-                e.textContent = String(data.visits ? data.visits.value : 0);
-            });
-        });
-    </script>
 {{ end }}
 
 {{ define "right-sidebar" }}
