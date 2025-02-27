@@ -14,15 +14,21 @@
 {{- $umami := .Site.Params.Umami -}}
 <script>
     (function () {
-        const postPath = window.location.pathname;
+        const elements = document.getElementsByClassName("article-time--count");
+        if (elements.length === 0) {
+            return;
+        }
+        // const postPath = window.location.pathname;
         const sId = {{ $umami.SiteId }};
         const t = {{ $umami.ApiKey }};
         const st = {{ $umami.StartAt }};
         const now = Date.now();
-        const url = `https://u.blahba.com/api/websites/${sId}/stats?startAt=${st}&endAt=${now}&url=${encodeURIComponent(postPath)}`;
-        fetch(url, { headers: { "Authorization": `Bearer ${t}` } }).then(r => r.json()).then(data => {
-            const element = document.getElementById("article-time--count");
-            element.textContent = String(data.visits ? data.visits.value : 0);
-        });
+        for (let e of elements) {
+            const path = e.dataset.permalink;
+            const url = `https://u.blahba.com/api/websites/${sId}/stats?startAt=${st}&endAt=${now}&url=${encodeURIComponent(path)}`;
+            fetch(url, { headers: { "Authorization": `Bearer ${t}` } }).then(r => r.json()).then(data => {
+                e.textContent = String(data.visits ? data.visits.value : 0);
+            });
+        }
     }());
 </script>
