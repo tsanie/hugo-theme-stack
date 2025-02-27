@@ -45,12 +45,14 @@
                 </time>
             </div>
         {{ end }}
+        {{ if .IsPage }}
             <div>
                 {{ partial "helper/icon" "eye" }}
                 <time class="article-time--count">
                     0
                 </time>
             </div>
+        {{ end }}
     </footer>
     {{ end }}
 
