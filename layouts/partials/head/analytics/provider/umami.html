@@ -14,7 +14,7 @@
                     const path = window.location.pathname;
                     let options;
                     {{- if $umami.Token -}}
-                    const token = {{ $umami.Token }};
+                    const token = `{{ $umami.Token | js }}`;
                     options = {
                         headers: {
                             'Authorization': `Bearer ${token}`

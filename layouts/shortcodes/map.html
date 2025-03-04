@@ -5,11 +5,11 @@
 {{- $mapWidth := default "100%" (.Get "w") -}}
 {{- $mapHeight := default "360px" (.Get "h") -}}
 <div class="map-box">
-<div id="map-{{$mapLon}}-{{$mapLat}}" style="max-width:{{$mapWidth}};height:{{$mapHeight}};"></div>
+<div id="map-{{$mapLon}}-{{$mapLat}}" style="max-width:{{$mapWidth}};height:{{$mapHeight}}"></div>
 </div>
 <script>
-    var mymap = L.map('map-{{$mapLon}}-{{$mapLat}}', { attributionControl:false }).setView([{{$mapLat}},{{$mapLon}}], {{ if .Get "zoom" }}{{ int (.Get "zoom") }}{{ else }}16{{ end }});
-    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(mymap);
+    var mymap = L.map('map-{{$mapLon}}-{{$mapLat}}',{attributionControl:false}).setView([{{$mapLat}},{{$mapLon}}],{{ if .Get "zoom" }}{{ int (.Get "zoom") }}{{ else }}16{{ end }});
+    L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(mymap);
     {{ if .Get "alt" }}
     {{ if and (.Get "altLat") (.Get "altLon") }}
     var marker = L.marker([{{.Get "altLat"}}, {{.Get "altLon"}}]).addTo(mymap);
