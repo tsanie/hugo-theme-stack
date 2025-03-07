@@ -1,0 +1,5 @@
+{{- with .Site.Params.Analytics.Baidu -}}
+    {{- if and (.Enabled) (.Content) -}}
+        <meta name="baidu-site-verification" content="{{ .Content }}" />
+    {{- end -}}
+{{- end -}}
